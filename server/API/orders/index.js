@@ -16,7 +16,7 @@ const Router = express.Router();
     Access          PUBLIC
     Method          Get
 */
-Router.get("/:_id", async (req,res) => {
+Router.get("/:_id", passport.authenticate("jwt", {session: false}), async (req,res) => {
     try {
         await ValidateOrderId(req.params);
         const { _id } = req.params;
