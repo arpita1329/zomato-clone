@@ -5,6 +5,9 @@ import multer from "multer";
 // Database Models
 import { ImageModel } from "../../database/allModels";
 
+// Validation
+import { ValidateImages } from "../../validation/image";
+
 // Utilities
 import { s3Upload } from "../../Utils/AWS/s3";
 
@@ -23,6 +26,7 @@ const upload = multer({ storage });
 */
 Router.post("/", upload.single("file",4), async(req,res) => {
     try {
+        await ValidateImages(req.file);
         const file = req.file;
 
         // S3 bucket options

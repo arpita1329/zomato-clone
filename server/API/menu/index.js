@@ -4,6 +4,9 @@ import passport from "passport";
 // Database Models
 import { MenuModel, ImageModel } from "../../database/allModels";
 
+// Validation
+import { ValidateMenuId } from "../../validation/menu";
+
 const Router = express.Router();
 
 /*
@@ -15,6 +18,7 @@ const Router = express.Router();
 */
 Router.get("/list/:_id", async (req,res) => {
     try {
+        await ValidateMenuId(req.params);
         const { _id } = req.params;
         const menus = await MenuModel.findOne(_id);
         return res.json({ menus }); 
@@ -32,6 +36,7 @@ Router.get("/list/:_id", async (req,res) => {
 */
 Router.get("/image/:_id", async (req,res) => {
     try {
+        await ValidateMenuId(req.params);
         const { _id } = req.params;
         const menus = await ImageModel.findOne(_id);
         return res.json({ menus }); 
