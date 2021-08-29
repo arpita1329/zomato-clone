@@ -1,11 +1,30 @@
 import React from "react";
 
-const NutritionCarousalCard = (props) => {
+const NutritionCard = ({image, title}) => {
     return (
-        <div className="w-full h-72">
-            <img src={props.image} alt="medicine" className="w-full h-full"/>
-        </div>
+        <>
+            <div className="bg-white shadow rounded-md w-24 px-3 md:px-4 md:w-56">
+                <div>
+                    <div className="w-full md:h-36 h-12 ">
+                        <img src={image} alt="food" className="w-full h-full object-cover rounded-t-md" />
+                    </div>
+                </div>
+                <div>
+                    <h3 className="text-sm my-1 text-center font-light md:text-xl">{title}</h3>
+                </div>
+            </div>
+        </>
     );
 };
 
+
+const NutritionCarousalCard = (props) => {
+    return (
+        <>
+            <NutritionCard {...props}/>
+        </>
+    )
+}
+
 export default NutritionCarousalCard;
+
