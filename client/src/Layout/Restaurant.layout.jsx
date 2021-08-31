@@ -8,8 +8,9 @@ import RestaurantNavbar from "../Components/Navbar/restaurantNavbar";
 import ImageGrid from "../Components/restaurant/ImageGrid";
 import InfoButtons from "../Components/restaurant/InfoButtons";
 import RestaurantInfo from "../Components/restaurant/RestaurantInfo";
+import TabContainer from "../Components/restaurant/Tabs";
 
-const RestaurantLayout = () => {
+const RestaurantLayout = (props) => {
 
     return (
       <>
@@ -23,6 +24,7 @@ const RestaurantLayout = () => {
                     "https://b.zmtcdn.com/data/pictures/chains/2/18878982/83ffa65c9ab42eb239ab12020dfb8c38.jpg?fit=around|771.75:416.25"
                 ]} 
             />
+            
             <RestaurantInfo 
               name="Mumbai Xpress" 
               restaurantRating="3.5" 
@@ -30,6 +32,7 @@ const RestaurantLayout = () => {
               cuisine="North Indian, Fast Food, Chinese, Street Food" 
               address="C-Scheme, Jaipur" 
             />
+            
             <div className="my-4 flex flex-wrap gap-3">
               <InfoButtons isActive>
                 <TiStarOutline /> Add Review
@@ -44,6 +47,11 @@ const RestaurantLayout = () => {
                 <RiShareForwardLine /> Share
               </InfoButtons>
             </div>
+            
+            <div className="my-10">
+              <TabContainer></TabContainer>
+            </div>
+            {props.children}
         </div>
       </>
     );
