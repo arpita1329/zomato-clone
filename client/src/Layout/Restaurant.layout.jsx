@@ -51,7 +51,7 @@ const RestaurantLayout = (props) => {
             <div className="my-10">
               <TabContainer></TabContainer>
             </div>
-            {props.children}
+            <div className="relative">{props.children}</div>
         </div>
       </>
     );
