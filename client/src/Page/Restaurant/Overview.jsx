@@ -3,26 +3,53 @@ import { Link, useParams } from "react-router-dom";
 import { IoMdArrowDropright } from "react-icons/io";
 import Slider from "react-slick";
 import ReactStars from "react-rating-stars-component";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 // Components
 import MenuCollection from "../../Components/restaurant/MenuCollection";
 import MenuSimilarRestaurantCard from "../../Components/restaurant/MenuSimilarRestaurantCard";
 import { NextArrow, PrevArrow } from "../../Components/CarousalArrow";
 import ReviewCard from "../../Components/restaurant/Reviews/reviewCard";
+import MapView from "../../Components/restaurant/MapView";
 
 const Overview = () => {
     const {id} = useParams();
 
     const settings = {
-        arrows: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />,
-    };
+      dots: true,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      initialSlide: 0,
+      nextArrow: <NextArrow />,
+      prevArrow: <PrevArrow />,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true,
+          },
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+  };
 
     const ratingChanged = (newRating) => {
       console.log(newRating);
@@ -82,6 +109,10 @@ const Overview = () => {
                     />,
                   </div>
                   
+                  <div className="my-4 w-full md:hidden flex flex-col gap-4">
+                    <MapView title="Kanha" phno="+919057802121" mapLocation={[26.913250445087513, 75.80003499201838]} address="E 62, Bhagat Singh Marg, C Scheme, Jaipur" />
+                  </div>
+
                   <div className="my-4 flex flex-col gap-4">
                     <ReviewCard />
                     <ReviewCard />
@@ -90,27 +121,8 @@ const Overview = () => {
                 
                 </div>
                 
-                <aside style={{height: "fit-content"}} className="hidden md:block md:w-4/12 rounded-xl sticky top-2 bg-white p-3 shadow-md">
-                  <div>
-                    <h4 className="text-xl font-medium ">Call</h4>
-                    <h5 className="text-zomato-400 font-medium">+918047192229</h5>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-medium ">Direction</h4>
-                    <div className="w-full h-48">
-                      <MapContainer center={[12.988134202889283, 77.59405893120281]} zoom={13} scrollWheelZoom={false}>
-                        <TileLayer
-                          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        />
-                        <Marker position={[12.988134202889283, 77.59405893120281]}>
-                          <Popup>
-                            Mumbai Xpress
-                          </Popup>
-                        </Marker>
-                      </MapContainer>
-                    </div>
-                  </div>
+                <aside style={{height: "fit-content"}} className="hidden md:flex md:w-4/12 rounded-xl sticky top-2 bg-white p-3 shadow-md flex flex-col gap-4">
+                  <MapView title="Kanha" phno="+919057802121" mapLocation={[26.913250445087513, 75.80003499201838]} address="E 62, Bhagat Singh Marg, C Scheme, Jaipur" />
                 </aside>
             </div>
         </>
