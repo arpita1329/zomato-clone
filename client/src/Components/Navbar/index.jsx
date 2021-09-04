@@ -77,13 +77,13 @@ const LargeNav = ({ SignIn, SignUp }) => {
     );
 };
 
-
 const Navbar = () => {
     const [openSignin, setOpenSignin] = useState(false);
     const [openSignup, setOpenSignup] = useState(false);
 
     const openSignInmodal = () => setOpenSignin(true);
     const openSignUpmodal = () => setOpenSignup(true);
+
     return (
       <>
         <SignIn isOpen={openSignin} setIsOpen={setOpenSignin} />
