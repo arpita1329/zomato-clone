@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { IoMdArrowDropright } from "react-icons/io";
 import Slider from "react-slick";
@@ -11,7 +12,13 @@ import { NextArrow, PrevArrow } from "../../Components/CarousalArrow";
 import ReviewCard from "../../Components/restaurant/Reviews/reviewCard";
 import MapView from "../../Components/restaurant/MapView";
 
+
+import { getReviews } from "../../Redux/Reducer/Reviews/review.action";
+import { getImage } from "../../Redux/Reducer/Image/image.action";
+
 const Overview = () => {
+    const [menuImage, setMenuImages] = useState({ images: [] });
+    const [Reviews, setReviewss] = useState([]);
     const {id} = useParams();
 
     const settings = {
@@ -51,6 +58,24 @@ const Overview = () => {
       ],
   };
 
+    const reduxState = useSelector(
+      (globalStore) => globalStore.restaurant.selectedRestaurant.restaurant
+    );
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      if (reduxState) {
+        dispatch(getImage(reduxState?.menuImage)).then((data) => {
+          const images = [];
+          data.payload.image.images.map(({ location }) => images.push(location));
+          setMenuImages(images);
+        });
+        dispatch(getReviews(reduxState?._id)).then((data) =>
+          setReviewss(data.payload.reviews)
+        );
+      }
+    }, []);
+
     const ratingChanged = (newRating) => {
       console.log(newRating);
     };
@@ -73,11 +98,8 @@ const Overview = () => {
                     <MenuCollection 
                       menuTitle="Menu" 
                       pages="4" 
-                      image={[
-                        "https://b.zmtcdn.com/data/menus/920/19438920/21fa39744f465abc5f947f1e9319fb5d.jpg",
-                        "https://images.unsplash.com/photo-1526382551041-3c817fc3d478?dpr=2&auto=format&crop=faces&fit=crop&w=300&h=300",
-                        "https://b.zmtcdn.com/data/menus/920/19438920/21fa39744f465abc5f947f1e9319fb5d.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"
-                      ]} />
+                      image={menuImage}
+                    />
                   </div>
 
                   <h4 className="text-lg font-medium  my-4">Cuisines</h4>
@@ -113,7 +135,12 @@ const Overview = () => {
                       onChange={ratingChanged}
                       size={24}
                       activeColor="#ffd700"
-                    />,
+                    />
+                    {
+                      Reviews.map((reviewData) => (
+                        <ReviewCard />
+                      ))
+                    }
                   </div>
                   
                   <div className="my-4 w-full md:hidden flex flex-col gap-4">

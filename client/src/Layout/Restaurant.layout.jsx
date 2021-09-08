@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {TiStarOutline} from "react-icons/ti";
 import {RiDirectionLine, RiShareForwardLine} from "react-icons/ri";
 import {BiBookmarkPlus} from "react-icons/bi";
@@ -11,27 +13,44 @@ import RestaurantInfo from "../Components/restaurant/RestaurantInfo";
 import TabContainer from "../Components/restaurant/Tabs";
 import CartContainer from "../Components/Cart/cartContainer";
 
+import { getSpecificRestaurant } from "../Redux/Reducer/restaurant/restaurant.action";
+import { getImage } from "../Redux/Reducer/Image/image.action";
+
 const RestaurantLayout = (props) => {
+  const [restaurant, setRestaurant] = useState({
+    images: [],
+    name: "",
+    cuising: "",
+    address: "",
+  });
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSpecificRestaurant(id)).then((data) => {
+      setRestaurant((prev) => ({
+        ...prev,
+        ...data.payload.restaurant,
+      }));
+
+      // dispatch(getImage(data.payload.restaurant.photos)).then((data) =>
+      //   setRestaurant((prev) => ({ ...prev, ...data.payload.image }))
+      // );
+    });
+  }, []);
 
     return (
       <>
         <RestaurantNavbar />
         <div className = "container mx-auto px-4 lg:px-20">
-            <ImageGrid images={[
-                    "https://b.zmtcdn.com/data/pictures/chains/2/18878982/83ffa65c9ab42eb239ab12020dfb8c38.jpg?fit=around|771.75:416.25",
-                    "https://b.zmtcdn.com/data/pictures/chains/2/18878982/83ffa65c9ab42eb239ab12020dfb8c38.jpg?fit=around|771.75:416.25",
-                    "https://b.zmtcdn.com/data/pictures/chains/2/18878982/83ffa65c9ab42eb239ab12020dfb8c38.jpg?fit=around|771.75:416.25",
-                    "https://b.zmtcdn.com/data/pictures/chains/2/18878982/83ffa65c9ab42eb239ab12020dfb8c38.jpg?fit=around|771.75:416.25",
-                    "https://b.zmtcdn.com/data/pictures/chains/2/18878982/83ffa65c9ab42eb239ab12020dfb8c38.jpg?fit=around|771.75:416.25"
-                ]} 
-            />
+            <ImageGrid images={restaurant.images} />
             
             <RestaurantInfo 
-              name="Mumbai Xpress" 
-              restaurantRating="3.5" 
-              deliveryRating="3.2" 
-              cuisine="North Indian, Fast Food, Chinese, Street Food" 
-              address="C-Scheme, Jaipur" 
+              name={restaurant?.name}
+              restaurantRating={restaurant?.rating || 0}
+              deliveryRating={restaurant?.rating || 0}
+              cuisine={restaurant?.cuising}
+              address={restaurant?.address}
             />
             
             <div className="my-4 flex flex-wrap gap-3">

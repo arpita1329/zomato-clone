@@ -12,16 +12,32 @@ const Router = express.Router();
 /*
     Route           /
     Description     Get user data
+    Params          none
+    Access          PUBLIC
+    Method          Get
+*/
+Router.get("/", passport.authenticate("jwt"), async (req,res) => {
+    try {
+        const { email, fullname, phoneNumber, address } = req.session.passport.user._doc;
+        return res.json({ user : { email, fullname, phoneNumber, address } });
+
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+});
+
+/*
+    Route           /:_id
+    Description     Get user data
     Params          _id
     Access          PUBLIC
     Method          Get
 */
 Router.get("/:_id", async (req,res) => {
     try {
-        await ValidateUsertId(req.params);
-        const { _id } = req.params;
-        const getUser = await UserModel.findById(_id);
-        return res.json({ user : getUser});
+        const user = await UserModel.findById(req.params._id);
+        const { fullname } = user;                                                                                                   
+        return res.json({ user : { fullname } });
 
     } catch (error) {
         return res.status(500).json({ error: error.message });
