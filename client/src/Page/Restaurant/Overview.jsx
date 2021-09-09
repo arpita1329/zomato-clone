@@ -80,6 +80,14 @@ const Overview = () => {
       console.log(newRating);
     };
 
+    const getLatLong = (mapAddress) => {
+      return mapAddress?.split(",").map((item) => parseFloat(item));
+    };
+  
+    console.log(
+      reduxState?.mapLocation?.split(",").map((item) => parseFloat(item))
+    );
+
     return (
         <>
             <div className="flex flex-col md:flex-row relative">
@@ -104,14 +112,16 @@ const Overview = () => {
 
                   <h4 className="text-lg font-medium  my-4">Cuisines</h4>
                   <div className="flex flex-wrap gap-2">
-                      <span className="border border-gray-600 text-blue-600 px-2 py-1 rounded-full">Street Food</span>
-                      <span className="border border-gray-600 text-blue-600 px-2 py-1 rounded-full">Beverages</span>
-                      <span className="border border-gray-600 text-blue-600 px-2 py-1 rounded-full">Street Food</span>
+                  {reduxState?.cuisine.map((data) => (
+                    <span className="border border-gray-600 text-blue-600 px-2 py-1 rounded-full">
+                      {data}
+                    </span>
+                  ))}
                   </div>
     
                   <div className="my-4">
                     <h4 className="text-lg font-medium ">Average Cost</h4>
-                    <h6>₹250 for two people (approx.)</h6>
+                    <h6>₹{reduxState?.averageCost}  for two people (approx.)</h6>
                     <small className="text-gray-500">Exclusive of applicable taxes and charges, if any</small>
                   </div>
 
@@ -144,7 +154,12 @@ const Overview = () => {
                   </div>
                   
                   <div className="my-4 w-full md:hidden flex flex-col gap-4">
-                    <MapView title="Kanha" phno="+919057802121" mapLocation={[26.913250445087513, 75.80003499201838]} address="E 62, Bhagat Singh Marg, C Scheme, Jaipur" />
+                    <MapView 
+                      title={reduxState?.name}
+                      phno={`+91${reduxState?.contactNumber}`}
+                      mapLocation={getLatLong(reduxState?.mapLocation)}
+                      address={reduxState?.address}
+                    />
                   </div>
 
                   <div className="my-4 flex flex-col gap-4">
@@ -156,7 +171,12 @@ const Overview = () => {
                 </div>
                 
                 <aside style={{height: "fit-content"}} className="hidden md:flex md:w-4/12 rounded-xl sticky top-2 bg-white p-3 shadow-md flex flex-col gap-4">
-                  <MapView title="Kanha" phno="+919057802121" mapLocation={[26.913250445087513, 75.80003499201838]} address="E 62, Bhagat Singh Marg, C Scheme, Jaipur" />
+                  <MapView 
+                    title={reduxState?.name}
+                    phno={`+91${reduxState?.contactNumber}`}
+                    mapLocation={getLatLong(reduxState?.mapLocation)}
+                    address={reduxState?.address}
+                  />
                 </aside>
             </div>
         </>
