@@ -15,7 +15,7 @@ import { addCart } from "../../Redux/Reducer/Cart/cart.action";
 const OrderOnline = () => {
     const [menu, setMenu] = useState([]);
     const dispatch = useDispatch();
-    const [selected, setSelected] = useState();
+    const [selected, setSelected] = useState("");
     const onClickHandler = (e) => {
         if(e.target.id){
             setSelected(e.target.id);

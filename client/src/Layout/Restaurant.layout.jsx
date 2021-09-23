@@ -35,9 +35,9 @@ const RestaurantLayout = (props) => {
         ...data.payload.restaurant,
       }));
 
-      // dispatch(getImage(data.payload.restaurant.photos)).then((data) =>
-      //   setRestaurant((prev) => ({ ...prev, ...data.payload.image }))
-      // );
+      dispatch(getImage(data.payload.restaurant.photos)).then((data) =>
+        setRestaurant((prev) => ({ ...prev, ...data.payload.image }))
+      );
     });
 
     dispatch(getCart());
@@ -53,8 +53,9 @@ const RestaurantLayout = (props) => {
               name={restaurant?.name}
               restaurantRating={restaurant?.rating || 0}
               deliveryRating={restaurant?.rating || 0}
-              cuisine={restaurant?.cuising}
+              cuisine={restaurant?.cuisine}
               address={restaurant?.address}
+              restaurantTimings={restaurant?.restaurantTimings || "11am - 8pm"}
             />
             
             <div className="my-4 flex flex-wrap gap-3">

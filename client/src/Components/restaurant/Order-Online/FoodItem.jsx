@@ -24,7 +24,7 @@ const FoodItem = (props) => {
 
     const addFoodToCart = () => {
         dispatch(addCart({...food, quantity: 1, totalPrice: food.price}));
-        setFood(prev => ({...ondragover, isAddedToCart: true}));
+        setFood((prev) => ({...prev, isAddedToCart: true}));
     };
 
     return ( 
@@ -34,7 +34,7 @@ const FoodItem = (props) => {
                 {
                     food?.image && (
                         <div className="w-3/12 h-24 md:h-28 lg:h-36 md:px-3">
-                            <img src={props.image} alt="food" className="w-full h-full rounded-lg" />
+                            <img src={food?.image} alt="food" className="w-full h-full rounded-lg" />
                         </div>
                     )
                 }

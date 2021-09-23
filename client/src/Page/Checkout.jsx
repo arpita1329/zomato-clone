@@ -29,7 +29,7 @@ const Checkout = () => {
         }
     ];
 
-    const payNow = async(e) => {
+    const payNow = () => {
         let options = {
             key: "rzp_test_pxNBBXyb6jFWDa",
             amount:

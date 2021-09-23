@@ -129,12 +129,12 @@ const Overview = () => {
                     <h4 className="text-lg font-medium ">Similar Restaurants</h4>
                     <Slider {...settings}>
                         <MenuSimilarRestaurantCard image="https://b.zmtcdn.com/data/pictures/8/54578/942707e37f65beb8bdce1659d61de5ed_featured_v2.jpg?output-format=webp" title="Shankar Bhel House"/>
-                        <MenuSimilarRestaurantCard image="https://b.zmtcdn.com/data/pictures/8/54578/942707e37f65beb8bdce1659d61de5ed_featured_v2.jpg?output-format=webp" title="Shankar Bhel House"/>
-                        <MenuSimilarRestaurantCard image="https://b.zmtcdn.com/data/pictures/8/54578/942707e37f65beb8bdce1659d61de5ed_featured_v2.jpg?output-format=webp" title="Shankar Bhel House"/>
-                        <MenuSimilarRestaurantCard image="https://b.zmtcdn.com/data/pictures/8/54578/942707e37f65beb8bdce1659d61de5ed_featured_v2.jpg?output-format=webp" title="Shankar Bhel House"/>
-                        <MenuSimilarRestaurantCard image="https://b.zmtcdn.com/data/pictures/8/54578/942707e37f65beb8bdce1659d61de5ed_featured_v2.jpg?output-format=webp" title="Shankar Bhel House"/>
-                        <MenuSimilarRestaurantCard image="https://b.zmtcdn.com/data/pictures/8/54578/942707e37f65beb8bdce1659d61de5ed_featured_v2.jpg?output-format=webp" title="Shankar Bhel House"/>
-                        <MenuSimilarRestaurantCard image="https://b.zmtcdn.com/data/pictures/8/54578/942707e37f65beb8bdce1659d61de5ed_featured_v2.jpg?output-format=webp" title="Shankar Bhel House"/>
+                        <MenuSimilarRestaurantCard image="https://b.zmtcdn.com/data/pictures/chains/6/100256/75d199829038cdcd50e25bf3f43bc5eb_o2_featured_v2.jpg?output-format=webp" title="Subway"/>
+                        <MenuSimilarRestaurantCard image="https://b.zmtcdn.com/data/pictures/7/100727/7a7a53ad94144f28122061c03fb6bcb0_o2_featured_v2.jpg" title="Ganesh Bhojnalaya"/>
+                        <MenuSimilarRestaurantCard image="https://b.zmtcdn.com/data/pictures/chains/6/100036/04acf727baa7e2a27aa954d43e88153a_o2_featured_v2.jpg" title="Brown Sugar-Baker & Cafe"/>
+                        <MenuSimilarRestaurantCard image="https://b.zmtcdn.com/data/pictures/8/18772388/c4d69bac1a6388acccbd2ef56988fd08_o2_featured_v2.jpg" title="Crazy Coffee"/>
+                        <MenuSimilarRestaurantCard image="https://b.zmtcdn.com/data/pictures/0/19182660/db669e7d2c225d1b5cc4a83d5a60a13c_o2_featured_v2.jpg" title="Thali-N-Platters"/>
+                        <MenuSimilarRestaurantCard image="https://b.zmtcdn.com/data/pictures/5/102795/42abd5585712945dc473a1a9ccc7b2f0_o2_featured_v2.jpg" title="Cafe Bae"/>
                     </Slider>
                   </div>
                 
@@ -148,7 +148,7 @@ const Overview = () => {
                     />
                     {
                       Reviews.map((reviewData) => (
-                        <ReviewCard />
+                        <ReviewCard {...reviewData}  />
                       ))
                     }
                   </div>
@@ -163,9 +163,7 @@ const Overview = () => {
                   </div>
 
                   <div className="my-4 flex flex-col gap-4">
-                    <ReviewCard />
-                    <ReviewCard />
-                    <ReviewCard />
+                    
                   </div>
                 
                 </div>

@@ -13,8 +13,8 @@ const DeliveryCarousal = () => {
             title: "Biryani"
         },
         {
-            image: "https://b.zmtcdn.com/data/dish_photos/cf9/08bf86a8c902df8e6d703e374391ecf9.jpg",
-            title: "Kesar Bath"
+            image: "https://b.zmtcdn.com/data/pictures/chains/4/56464/18163c7b780365d66811997d9d118ae5_o2_featured_v2.jpg",
+            title: "Waffles"
         },
         {
             image: "https://b.zmtcdn.com/data/homepage_dish_data/4/742929dcb631403d7c1c1efad2ca2700.png",
@@ -33,8 +33,8 @@ const DeliveryCarousal = () => {
             title: "Rolls"
         },
         {
-            image: "https://b.zmtcdn.com/data/dish_photos/06a/af146087e76aed8c0baa90a84a6f206a.jpg",
-            title: "Sagu"
+            image: "https://b.zmtcdn.com/data/pictures/chains/1/60551/5175748d41698e6eab456034fddc99b5_o2_featured_v2.jpg",
+            title: "Burger"
         }
     ];
      

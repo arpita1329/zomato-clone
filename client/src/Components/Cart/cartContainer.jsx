@@ -55,7 +55,7 @@ const CartLg = ({toggle}) => {
                     <h4 className="text-xl">
                         Subtotal:₹{reduxState.reduce((acc, curVal) => acc + curVal.totalPrice, 0 )} 
                     </h4>
-                    <button className="flex items-center text-lg font-light h-10 gap-1 bg-zomato-400 px-3 py-1 text-white rounded-lg">
+                    <button onClick={continueToCheckout} className="flex items-center text-lg font-light h-10 gap-1 bg-zomato-400 px-3 py-1 text-white rounded-lg">
                         Continue <IoMdArrowDropright />
                     </button>
                 </div>

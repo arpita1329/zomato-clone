@@ -17,8 +17,8 @@ const Delivery = () => {
     return (
         <>
             <DeliveryCarousal />
-            <h1 className="text-xl mt-4 mb-2 md:mt-8 md:text-3xl md:font-semibold">Delivery Restaurants in Malviya Nagar</h1>
-            <div className="flex justify-between flex-wrap">
+            <h1 className="text-xl mt-4 mb-2 md:mt-8 md:text-3xl md:font-semibold">Delivery Restaurants in Jaipur</h1>
+            <div className="flex flex-wrap justify-between">
                 {
                     restaurantList.map((restaurant) => (
                         <RestaurantCard {...restaurant} key={restaurant._id} />
@@ -26,7 +26,9 @@ const Delivery = () => {
                 }
             </div>
         </>
-    )
-}
+    );
+};
 
 export default Delivery;
+
+// flex flex-col md:flex-row h-screen w-screen m-3

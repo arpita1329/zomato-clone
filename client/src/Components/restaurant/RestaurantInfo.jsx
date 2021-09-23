@@ -32,7 +32,7 @@ const RestaurantInfo = (props) => {
                 <h3>{props.cuisine}</h3>
                 <h3 className="text-gray-400">{props.address}</h3>
                 <h3>
-                  <span className="text-yellow-500">Open Now</span> - 11am - 8pm
+                  <span className="text-yellow-500">Open Now</span> {props.restaurantTimings}
                 </h3>
               </div>
             </div>
