@@ -1,0 +1,23 @@
+sudo: required
+
+# Install Docker
+services:
+  - docker
+
+# Execute Logic
+script:
+  - echo "Hello Students!"
+
+after_success:
+  # Build all docker files
+  - docker build -t arpit1329/zomato-master-client ./client
+  - docker build -t arpit1329/zomato-master-server ./server
+  - docker build -t arpit1329/zomato-master-nginx ./nginx
+
+  # log in docker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # push to docker hub
+  - docker push arpit1329/zomato-master-client 
+  - docker push arpit1329/zomato-master-server 
+  - docker push arpit1329/zomato-master-nginx
