@@ -21,3 +21,16 @@ after_success:
   - docker push arpit1329/zomato-master-client 
   - docker push arpit1329/zomato-master-server 
   - docker push arpit1329/zomato-master-nginx
+
+deploy:
+  # Deploy to AWS EBS
+  provider: elasticbeanstalk
+  region: ap-south-1
+  app: zomato-app
+  env: Zomatoapp-env
+  bucket_name: elasticbeanstalk-ap-south-1-888944035006
+  bucket_path: zomatomaster
+  on:
+    branch: master
+  access_key_id: $AWS_KEY
+  secret_access_key: $AWS_SECRET 
